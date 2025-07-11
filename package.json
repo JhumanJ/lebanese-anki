@@ -1,0 +1,31 @@
+{
+  "name": "lebanese-anki-generator",
+  "version": "1.0.0",
+  "description": "Generate Noji flashcards from Lebanese Arabic lesson notes in Notion using OpenAI",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "keywords": [
+    "noji",
+    "flashcards",
+    "notion",
+    "openai",
+    "lebanese",
+    "arabic",
+    "language-learning"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@notionhq/client": "^2.2.15",
+    "axios": "^1.6.2",
+    "dotenv": "^16.3.1",
+    "openai": "^4.67.3",
+    "notion-to-md": "^3.1.9"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2"
+  }
+}

@@ -1,0 +1,124 @@
+{
+  "version": "1.0",
+  "createdAt": "2025-07-11T21:00:50.964Z",
+  "lastUpdated": "2025-07-11T22:43:05.545Z",
+  "processedLessons": {
+    "lesson-0": {
+      "processedAt": "2025-07-11T22:35:54.362Z",
+      "title": "Lesson lesson-0",
+      "blockCount": 10,
+      "hasImages": true,
+      "hasText": true,
+      "blockTypes": [
+        "paragraph",
+        "image",
+        "column_list"
+      ],
+      "cardsGenerated": 28,
+      "cardsAdded": 28,
+      "cardsFailed": 0,
+      "processingSuccessful": true
+    },
+    "lesson-1": {
+      "processedAt": "2025-07-11T22:36:23.158Z",
+      "title": "Lesson lesson-1",
+      "blockCount": 12,
+      "hasImages": true,
+      "hasText": true,
+      "blockTypes": [
+        "paragraph",
+        "column_list",
+        "image"
+      ],
+      "cardsGenerated": 12,
+      "cardsAdded": 12,
+      "cardsFailed": 0,
+      "processingSuccessful": true
+    },
+    "lesson-2": {
+      "processedAt": "2025-07-11T22:40:20.750Z",
+      "title": "Lesson lesson-2",
+      "blockCount": 41,
+      "hasImages": true,
+      "hasText": true,
+      "blockTypes": [
+        "paragraph",
+        "image",
+        "bulleted_list_item"
+      ],
+      "cardsGenerated": 0,
+      "cardsAdded": 0,
+      "cardsFailed": 0,
+      "processingSuccessful": true
+    },
+    "lesson-3": {
+      "processedAt": "2025-07-11T22:41:06.773Z",
+      "title": "Lesson lesson-3",
+      "blockCount": 27,
+      "hasImages": false,
+      "hasText": true,
+      "blockTypes": [
+        "paragraph",
+        "column_list"
+      ],
+      "cardsGenerated": 24,
+      "cardsAdded": 24,
+      "cardsFailed": 0,
+      "processingSuccessful": true
+    },
+    "lesson-4": {
+      "processedAt": "2025-07-11T22:41:32.987Z",
+      "title": "Lesson lesson-4",
+      "blockCount": 4,
+      "hasImages": false,
+      "hasText": true,
+      "blockTypes": [
+        "paragraph",
+        "callout"
+      ],
+      "cardsGenerated": 13,
+      "cardsAdded": 13,
+      "cardsFailed": 0,
+      "processingSuccessful": true
+    },
+    "lesson-5": {
+      "processedAt": "2025-07-11T22:42:15.653Z",
+      "title": "Lesson lesson-5",
+      "blockCount": 11,
+      "hasImages": true,
+      "hasText": true,
+      "blockTypes": [
+        "image",
+        "paragraph",
+        "toggle"
+      ],
+      "cardsGenerated": 14,
+      "cardsAdded": 14,
+      "cardsFailed": 0,
+      "processingSuccessful": true
+    },
+    "lesson-6": {
+      "processedAt": "2025-07-11T22:43:05.545Z",
+      "title": "Lesson lesson-6",
+      "blockCount": 13,
+      "hasImages": true,
+      "hasText": true,
+      "blockTypes": [
+        "paragraph",
+        "image"
+      ],
+      "cardsGenerated": 14,
+      "cardsAdded": 14,
+      "cardsFailed": 0,
+      "processingSuccessful": true
+    }
+  },
+  "stats": {
+    "totalLessonsProcessed": 7,
+    "totalLessonsFound": 27,
+    "lastPageId": "11f5f481400780baa92ade08cebc6527",
+    "lastPageTitle": "Lebanese Arabic Lessons",
+    "processingStarted": "2025-07-11T22:34:14.860Z",
+    "processingCompleted": null
+  }
+}
