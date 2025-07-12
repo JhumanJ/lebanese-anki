@@ -24,13 +24,9 @@ class CardsGenerationPrompt extends BasePrompt {
                 back: { 
                   type: 'string',
                   description: 'Back side of the flashcard (HTML formatting supported)'
-                },
-                reverse: { 
-                  type: 'boolean',
-                  description: 'Whether to create a reverse card for bidirectional learning'
                 }
               },
-              required: ['front', 'back', 'reverse']
+              required: ['front', 'back']
             }
           }
         },
@@ -82,13 +78,24 @@ Please create flashcards following these guidelines:
    - Use clear labeling: "Lebanese:" and "MSA:" or "Standard Arabic:"
 
 4. CARD TYPES:
-   - Vocabulary cards: Front = Word/phrase in Arabic, Back = English translation + both Lebanese and MSA versions (when different) + usage example
-   - Grammar concepts: Front = Grammar rule or example, Back = Explanation covering both dialects when relevant
-   - Cultural context: Front = Cultural concept, Back = Explanation and significance
-   - Pronunciation: Front = Word with pronunciation, Back = Meaning, pronunciation tips, and dialectal differences
-   - Dialect comparison: Front = Concept in one dialect, Back = Equivalent in other dialect + explanation of differences
+   - **Recognition cards** (Arabic → English): Front = Arabic script only, Back = English translation + pronunciation hints + dialect info
+   - **Production cards** (English → Arabic): Front = English phrase/word, Back = Arabic script (user must think/write Arabic)
+   - **Dialect comparison cards**: When Lebanese ≠ MSA, create separate cards comparing the dialects
+   - **Grammar concepts**: Front = Grammar rule or example, Back = Explanation covering both dialects when relevant
+   - **Cultural context**: Front = Cultural concept, Back = Explanation and significance
+   - **Pronunciation cards**: For difficult words, Front = Arabic, Back = Pronunciation guide + meaning + lebanese texto transcription
 
-5. HTML FORMATTING: You can use basic HTML tags in both front and back content for better formatting:
+5. SEPARATE CARDS FOR VOCABULARY: Instead of using reverse cards, create dedicated cards for different learning objectives:
+   - **Arabic Reading Practice**: Arabic script only on front → English + pronunciation on back
+   - **Arabic Production Practice**: English on front → Arabic script on back (no English mixed with Arabic)
+   - **Dialect Distinction**: When Lebanese differs from MSA, create a separate card specifically for this comparison
+
+6. ARABIC SCRIPT REQUIREMENT: 
+   - Use Arabic script (no Latin letters) for Arabic content to practice reading
+   - Include pronunciation hints in parentheses when helpful
+   - Keep Arabic and English content separate (don't mix on same side)
+
+7. HTML FORMATTING: You can use basic HTML tags in both front and back content for better formatting:
    - <h1>, <h2>, <h3> for headings
    - <p> for paragraphs
    - <strong> for bold text
@@ -98,40 +105,34 @@ Please create flashcards following these guidelines:
    - <ul>, <ol>, <li> for lists
    - <br> for line breaks
 
-6. REVERSE CARDS: Set "reverse": true when it would be beneficial to study the card in both directions. This creates an additional card with front/back swapped. Use this for:
-   - Vocabulary that should be learned both ways (Arabic→English AND English→Arabic)
-   - Translation exercises
-   - Any concept where bidirectional learning is valuable
-
-6. Include pronunciation hints when helpful (similar sound in English or French)
+8. Include pronunciation hints when helpful (similar sound in English or French)
 
 Format your response as a JSON object with a "cards" array containing objects with:
 - "front": the question/prompt side (HTML formatting supported)
 - "back": the answer/explanation side (HTML formatting supported)
-- "reverse": boolean - true if this card should also be studied in reverse direction
 
 Example format:
 {
   "cards": [
     {
-      "front": "<h3>Keefak?</h3>",
-      "back": "<p><strong>How are you?</strong> (masculine)</p><p><strong>Lebanese:</strong> Keefak?</p><p><strong>MSA:</strong> Kayf halak? (كيف حالك؟)</p><p>Used when greeting a male. For females, use <em>Keefik?</em> (Lebanese) or <em>Kayf halik?</em> (MSA)</p>",
-      "reverse": true
+      "front": "<h3>كيفك؟</h3>",
+      "back": "<p><strong>How are you?</strong> (masculine)</p><p>Pronunciation: /keefak/</p><p><strong>Lebanese:</strong> كيفك؟</p><p><strong>MSA:</strong> كيف حالك؟</p><p>Used when greeting a male. For females, use كيفك؟ (keefik) in Lebanese</p>"
     },
     {
-      "front": "<p>How do you say 'How are you?' to a woman in Lebanese Arabic?</p>",
-      "back": "<p><strong>Lebanese:</strong> Keefik?</p><p><strong>MSA:</strong> Kayf halik? (كيف حالك؟)</p><p>Note the <em>-ik</em> ending for feminine in both dialects</p>",
-      "reverse": false
+      "front": "<p>How do you say 'How are you?' to a man in Lebanese Arabic?</p>",
+      "back": "<h3>كيفك؟</h3><p>Pronunciation: /keefak/</p>"
     },
     {
-      "front": "<h3>بيت (House)</h3>",
-      "back": "<p><strong>House</strong></p><p><strong>Lebanese:</strong> Bayt (بيت)</p><p><strong>MSA:</strong> Bayt (بيت)</p><p>This word is the same in both dialects</p>",
-      "reverse": true
+      "front": "<h3>بيت</h3>",
+      "back": "<p><strong>House</strong></p><p>Pronunciation: /bayt/</p><p>This word is the same in both Lebanese and MSA</p>"
     },
     {
-      "front": "<p>What's the difference between Lebanese and MSA for 'want'?</p>",
-      "back": "<p><strong>Lebanese:</strong> Biddi (بدي) - I want</p><p><strong>MSA:</strong> Ureed (أريد) - I want</p><p>Lebanese uses 'biddi' while MSA uses 'ureed' - completely different words for the same meaning</p>",
-      "reverse": false
+      "front": "<p>What's the Lebanese word for 'I want'?</p>",
+      "back": "<h3>بدي</h3><p>Pronunciation: /biddi/</p>"
+    },
+    {
+      "front": "<p>Compare Lebanese and MSA for 'I want'</p>",
+      "back": "<p><strong>Lebanese:</strong> بدي (/biddi/)</p><p><strong>MSA:</strong> أريد (/ureed/)</p><p>Completely different words - Lebanese uses 'biddi' while MSA uses 'ureed'</p>"
     }
   ]
 }
@@ -174,13 +175,6 @@ JSON:`;
     if (validCards.length === 0) {
       throw new Error('No valid cards generated');
     }
-
-    // Ensure reverse is boolean
-    validCards.forEach(card => {
-      if (typeof card.reverse !== 'boolean') {
-        card.reverse = false;
-      }
-    });
 
     console.log(`Generated ${validCards.length} valid cards`);
     return validCards;

@@ -98,10 +98,24 @@ NOJI_API_URL=https://api-de.noji.io
 
 ## Usage
 
+### Basic Commands
+
 Process your Lebanese Arabic lesson notes:
 
 ```bash
 npm start
+```
+
+Clear processing state and start fresh:
+
+```bash
+npm start clear
+```
+
+Show help and available commands:
+
+```bash
+npm start help
 ```
 
 For development:
@@ -109,6 +123,20 @@ For development:
 ```bash
 npm run dev
 ```
+
+### Command Options
+
+- **`npm start`** - Process lessons and generate cards (default behavior)
+- **`npm start clear`** or **`npm start reset`** - Clear all processing state and start fresh
+- **`npm start help`** - Show available commands and usage examples
+
+### State Management
+
+The application automatically tracks which lessons have been processed using a `lesson-state.json` file. This allows you to:
+
+- **Resume processing**: If interrupted, run `npm start` again to continue from where you left off
+- **Skip processed lessons**: Only new or unprocessed lessons will be processed
+- **Start fresh**: Use `npm start clear` to reset state and reprocess all lessons
 
 ## How It Works
 
@@ -127,10 +155,9 @@ npm run dev
 ### Card Generation Strategy
 
 - **Comprehensive Coverage**: Creates as many cards as needed to cover all content
-- **Multiple Perspectives**: Generates overlapping cards (Arabic→English, English→Arabic)
+- **Separate Card Types**: Generates dedicated cards for recognition (Arabic→English), production (English→Arabic), and dialect comparison
 - **Smart Gap Filling**: Adds missing elements in sequences (e.g., missing numbers in a series)
 - **HTML Formatting**: Rich formatting with headings, lists, bold, italic, underline
-- **Reverse Cards**: Automatic bidirectional learning for vocabulary
 - **Lebanese Focus**: Specialized for Lebanese Arabic dialect and culture
 
 ## Card Types Generated
@@ -139,7 +166,6 @@ npm run dev
 - **Grammar Cards**: Rules, patterns, and examples with clear explanations
 - **Cultural Context**: Important cultural concepts and their significance
 - **Pronunciation Cards**: Pronunciation guides and phonetic hints
-- **Reverse Cards**: Bidirectional learning for vocabulary (Arabic→English AND English→Arabic)
 
 ### HTML Formatting Support
 
@@ -155,7 +181,6 @@ Cards support rich formatting for better learning:
 ```json
 {
   "front": "<h3>كيفك؟</h3><p>Keefak?</p>",
-  "back": "<p><strong>How are you?</strong> (masculine)</p><p>Used when greeting a male. For females, use <em>Keefik?</em></p>",
-  "reverse": true
+  "back": "<p><strong>How are you?</strong> (masculine)</p><p>Used when greeting a male. For females, use <em>Keefik?</em></p>"
 }
 ```

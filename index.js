@@ -14,6 +14,29 @@ class LebanesAnkiGenerator {
     this.markdownConverter = new LessonToMarkdownConverter(this.notionService.notion);
   }
 
+  // Clear processing state
+  async clearState() {
+    console.log('🧹 Clearing processing state...\n');
+    
+    try {
+      const stats = this.stateManager.getStats();
+      console.log('📊 Current state:');
+      console.log(`   Lessons processed: ${stats.totalLessonsProcessed}`);
+      console.log(`   Total lessons found: ${stats.totalLessonsFound}`);
+      console.log(`   Progress: ${stats.progress}`);
+      console.log();
+      
+      this.stateManager.resetState();
+      
+      console.log('✅ State cleared successfully!');
+      console.log('💡 Run "npm start" to process all lessons from scratch.\n');
+      
+    } catch (error) {
+      console.error('❌ Error clearing state:', error.message);
+      process.exit(1);
+    }
+  }
+
   async run() {
     console.log('🇱🇧 Starting Lebanese Anki Generator...\n');
     
@@ -153,10 +176,34 @@ class LebanesAnkiGenerator {
       process.exit(1);
     }
   }
-
-
 }
 
-// Run the application
+// Parse command line arguments
+const args = process.argv.slice(2);
+const command = args[0];
+
+// Create generator instance
 const generator = new LebanesAnkiGenerator();
-generator.run(); 
+
+// Handle commands
+if (command === 'clear' || command === 'reset') {
+  generator.clearState();
+} else if (command === 'help' || command === '--help' || command === '-h') {
+  console.log('🇱🇧 Lebanese Anki Generator - Available Commands\n');
+  console.log('Usage: npm start [command]\n');
+  console.log('Commands:');
+  console.log('  (no command)  Process lessons and generate cards');
+  console.log('  clear, reset  Clear processing state and start fresh');
+  console.log('  help          Show this help message\n');
+  console.log('Examples:');
+  console.log('  npm start        # Process lessons');
+  console.log('  npm start clear  # Clear state');
+  console.log('  npm start help   # Show help');
+} else if (command && !command.startsWith('-')) {
+  console.error(`❌ Unknown command: ${command}`);
+  console.error('💡 Run "npm start help" to see available commands');
+  process.exit(1);
+} else {
+  // Run the main application
+  generator.run();
+} 
