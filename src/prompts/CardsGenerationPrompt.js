@@ -63,6 +63,7 @@ IMPORTANT NOTES ABOUT THE SOURCE MATERIAL:
 - Example: If student noted days Monday, Tuesday, Thursday but missed Wednesday, include it
 - Don't add entirely new topics or concepts not mentioned in the notes
 - Focus on completing obvious sequences or fixing clear mistakes within existing content
+- Notee use the syntax \`word(leabanese version): meaning\` to represent a word (and its lebanese version) and its meaning. Sometimes we also use\ \`word sinngular -> word plural: meaning\` to represent a word and its meaning.
 - DUAL DIALECT REQUIREMENT: When you encounter Arabic words in the notes, identify whether they are Lebanese or MSA, and always provide the equivalent in the other dialect when it differs
 
 Please create flashcards following these guidelines:
