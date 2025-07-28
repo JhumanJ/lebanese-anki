@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "createdAt": "2025-07-11T23:50:06.792Z",
-  "lastUpdated": "2025-07-21T16:58:36.452Z",
+  "lastUpdated": "2025-07-28T16:51:33.129Z",
   "processedLessons": {
     "lesson-0": {
       "processedAt": "2025-07-11T23:52:33.789Z",
@@ -430,13 +430,29 @@
       "cardsAdded": 26,
       "cardsFailed": 0,
       "processingSuccessful": true
+    },
+    "lesson-28": {
+      "processedAt": "2025-07-28T16:51:33.127Z",
+      "title": "Lesson lesson-28",
+      "blockCount": 16,
+      "hasImages": true,
+      "hasText": true,
+      "blockTypes": [
+        "image",
+        "paragraph",
+        "bulleted_list_item"
+      ],
+      "cardsGenerated": 26,
+      "cardsAdded": 26,
+      "cardsFailed": 0,
+      "processingSuccessful": true
     }
   },
   "stats": {
-    "totalLessonsProcessed": 28,
-    "totalLessonsFound": 28,
+    "totalLessonsProcessed": 29,
+    "totalLessonsFound": 29,
     "lastPageTitle": "Lebanese Arabic Lessons",
-    "processingStarted": "2025-07-21T16:57:40.134Z",
-    "processingCompleted": "2025-07-21T16:58:36.452Z"
+    "processingStarted": "2025-07-28T16:50:33.319Z",
+    "processingCompleted": "2025-07-28T16:51:33.129Z"
   }
 }
