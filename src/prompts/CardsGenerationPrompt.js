@@ -46,7 +46,10 @@ Your expertise includes:
 - Effective spaced repetition learning principles
 - Cultural context and practical usage
 - Pronunciation guidance
-- Grammar explanations that are clear and practical`;
+- Grammar explanations that are clear and practical
+- Multilingual support (English and French input languages)
+- Error correction and completion of incomplete notes
+- Spelling correction in Arabic, English, and French`;
   }
 
   buildPrompt(lessonContent) {
@@ -57,14 +60,19 @@ ${lessonContent}
 </LessonContent>
 
 IMPORTANT NOTES ABOUT THE SOURCE MATERIAL:
-- These are student notes, which may contain mistakes, typos, or incomplete information
-- Feel free to correct obvious errors and fill in small logical gaps within the same topic
+- These are student notes, which may contain mistakes, typos, spelling errors, or incomplete information
+- **ACTIVELY CORRECT ERRORS**: Fix spelling mistakes in Arabic, English, and French text
+- **COMPLETE MISSING TRANSLATIONS**: If Lebanese translations are missing or incomplete, provide the correct Lebanese version
+- **FIX MISSPELLED ARABIC**: Correct any misspelled Arabic words (both Lebanese and MSA)
+- **FILL LOGICAL GAPS**: Complete obvious sequences or missing elements within the same topic
 - Example: If student noted numbers 1, 2, 3, 5 but missed 4, include the missing number 4
 - Example: If student noted days Monday, Tuesday, Thursday but missed Wednesday, include it
+- Example: If a word shows "house: بيت" but the Lebanese is missing, add both "بيت (MSA/Lebanese: same)"
+- Example: If "I want" shows only "أريد" but missing Lebanese, add "Lebanese: بدي, MSA: أريد"
 - Don't add entirely new topics or concepts not mentioned in the notes
-- Focus on completing obvious sequences or fixing clear mistakes within existing content
-- Notee use the syntax \`word(leabanese version): meaning\` to represent a word (and its lebanese version) and its meaning. Sometimes we also use\ \`word sinngular -> word plural: meaning\` to represent a word and its meaning.
-- DUAL DIALECT REQUIREMENT: When you encounter Arabic words in the notes, identify whether they are Lebanese or MSA, and always provide the equivalent in the other dialect when it differs
+- Notes use the syntax "word(lebanese version): meaning" to represent a word and its meaning. Sometimes also "word singular -> word plural: meaning"
+- **DUAL DIALECT REQUIREMENT**: When you encounter Arabic words, identify whether they are Lebanese or MSA, and always provide the equivalent in the other dialect when it differs
+- **MULTILINGUAL SUPPORT**: Handle English and French input languages equally - create cards from both to Arabic
 
 Please create flashcards following these guidelines:
 
@@ -79,17 +87,21 @@ Please create flashcards following these guidelines:
    - Use clear labeling: "Lebanese:" and "MSA:" or "Standard Arabic:"
 
 4. CARD TYPES:
-   - **Recognition cards** (Arabic → English): Front = Arabic script only, Back = English translation + pronunciation hints + dialect info
-   - **Production cards** (English → Arabic): Front = English phrase/word, Back = Arabic script (user must think/write Arabic)
+   - **Recognition cards** (Arabic → English/French): Front = Arabic script only, Back = English/French translation + pronunciation hints + dialect info
+   - **Production cards** (English/French → Lebanese): Front = English/French phrase/word, Back = Lebanese Arabic script only
+   - **Production cards** (English/French → MSA): Front = English/French phrase/word, Back = MSA Arabic script only
+   - **Bidirectional production**: Create BOTH Lebanese and MSA production cards for the same English/French term when they differ
    - **Dialect comparison cards**: When Lebanese ≠ MSA, create separate cards comparing the dialects
    - **Grammar concepts**: Front = Grammar rule or example, Back = Explanation covering both dialects when relevant
    - **Cultural context**: Front = Cultural concept, Back = Explanation and significance
-   - **Pronunciation cards**: For difficult words, Front = Arabic, Back = Pronunciation guide + meaning + lebanese texto transcription
+   - **Pronunciation cards**: For difficult words, Front = Arabic, Back = Pronunciation guide + meaning + transcription
 
 5. SEPARATE CARDS FOR VOCABULARY: Instead of using reverse cards, create dedicated cards for different learning objectives:
-   - **Arabic Reading Practice**: Arabic script only on front → English + pronunciation on back
-   - **Arabic Production Practice**: English on front → Arabic script on back (no English mixed with Arabic)
+   - **Arabic Reading Practice**: Arabic script only on front → English/French + pronunciation on back
+   - **Lebanese Production Practice**: English/French on front → Lebanese Arabic script only on back
+   - **MSA Production Practice**: English/French on front → MSA Arabic script only on back
    - **Dialect Distinction**: When Lebanese differs from MSA, create a separate card specifically for this comparison
+   - **CRITICAL**: For each vocabulary item, create BOTH Lebanese and MSA production cards when they differ
 
 6. ARABIC SCRIPT REQUIREMENT: 
    - Use Arabic script (no Latin letters) for Arabic content to practice reading
@@ -108,6 +120,12 @@ Please create flashcards following these guidelines:
 
 8. Include pronunciation hints when helpful (similar sound in English or French)
 
+9. ERROR CORRECTION EXAMPLES: Actively fix and improve the source material:
+   - If notes say "house: bayt" but miss Arabic script, add "بيت"
+   - If notes show "أكل" but miss Lebanese version, add "Lebanese: أكل (same as MSA)"
+   - If notes show "سيارة" for "car" but miss Lebanese "عربية", include both versions
+   - Fix any obvious typos in English, French, or Arabic text
+
 Format your response as a JSON object with a "cards" array containing objects with:
 - "front": the question/prompt side (HTML formatting supported)
 - "back": the answer/explanation side (HTML formatting supported)
@@ -117,19 +135,31 @@ Example format:
   "cards": [
     {
       "front": "<h3>كيفك؟</h3>",
-      "back": "<p><strong>How are you?</strong> (masculine)</p><p>Pronunciation: /keefak/</p><p><strong>Lebanese:</strong> كيفك؟</p><p><strong>MSA:</strong> كيف حالك؟</p><p>Used when greeting a male. For females, use كيفك؟ (keefik) in Lebanese</p>"
+      "back": "<p><strong>How are you?</strong> (masculine)</p><p><strong>Comment allez-vous?</strong> (French)</p><p>Pronunciation: /keefak/</p><p><strong>Lebanese:</strong> كيفك؟</p><p><strong>MSA:</strong> كيف حالك؟</p><p>Used when greeting a male. For females, use كيفك؟ (keefik) in Lebanese</p>"
     },
     {
       "front": "<p>How do you say 'How are you?' to a man in Lebanese Arabic?</p>",
       "back": "<h3>كيفك؟</h3><p>Pronunciation: /keefak/</p>"
     },
     {
+      "front": "<p>Comment dit-on 'Comment allez-vous?' à un homme en arabe libanais?</p>",
+      "back": "<h3>كيفك؟</h3><p>Pronunciation: /keefak/</p>"
+    },
+    {
+      "front": "<p>How do you say 'How are you?' to a man in MSA?</p>",
+      "back": "<h3>كيف حالك؟</h3><p>Pronunciation: /kayf haalak/</p>"
+    },
+    {
       "front": "<h3>بيت</h3>",
-      "back": "<p><strong>House</strong></p><p>Pronunciation: /bayt/</p><p>This word is the same in both Lebanese and MSA</p>"
+      "back": "<p><strong>House / Maison</strong></p><p>Pronunciation: /bayt/</p><p>This word is the same in both Lebanese and MSA</p>"
     },
     {
       "front": "<p>What's the Lebanese word for 'I want'?</p>",
       "back": "<h3>بدي</h3><p>Pronunciation: /biddi/</p>"
+    },
+    {
+      "front": "<p>What's the MSA word for 'I want'?</p>",
+      "back": "<h3>أريد</h3><p>Pronunciation: /ureed/</p>"
     },
     {
       "front": "<p>Compare Lebanese and MSA for 'I want'</p>",
