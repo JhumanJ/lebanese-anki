@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "createdAt": "2025-07-11T23:50:06.792Z",
-  "lastUpdated": "2025-07-31T10:02:44.050Z",
+  "lastUpdated": "2025-09-10T13:02:13.548Z",
   "processedLessons": {
     "lesson-0": {
       "processedAt": "2025-07-11T23:52:33.789Z",
@@ -461,13 +461,59 @@
       "cardsAdded": 35,
       "cardsFailed": 0,
       "processingSuccessful": true
+    },
+    "lesson-30": {
+      "processedAt": "2025-09-10T13:00:43.192Z",
+      "title": "Lesson lesson-30",
+      "blockCount": 16,
+      "hasImages": true,
+      "hasText": true,
+      "blockTypes": [
+        "paragraph",
+        "image"
+      ],
+      "cardsGenerated": 27,
+      "cardsAdded": 27,
+      "cardsFailed": 0,
+      "processingSuccessful": true
+    },
+    "lesson-31": {
+      "processedAt": "2025-09-10T13:01:33.043Z",
+      "title": "Lesson lesson-31",
+      "blockCount": 43,
+      "hasImages": true,
+      "hasText": true,
+      "blockTypes": [
+        "paragraph",
+        "image"
+      ],
+      "cardsGenerated": 36,
+      "cardsAdded": 36,
+      "cardsFailed": 0,
+      "processingSuccessful": true
+    },
+    "lesson-32": {
+      "processedAt": "2025-09-10T13:02:13.544Z",
+      "title": "Lesson lesson-32",
+      "blockCount": 17,
+      "hasImages": true,
+      "hasText": true,
+      "blockTypes": [
+        "paragraph",
+        "image",
+        "bulleted_list_item"
+      ],
+      "cardsGenerated": 20,
+      "cardsAdded": 20,
+      "cardsFailed": 0,
+      "processingSuccessful": true
     }
   },
   "stats": {
-    "totalLessonsProcessed": 30,
-    "totalLessonsFound": 30,
+    "totalLessonsProcessed": 33,
+    "totalLessonsFound": 33,
     "lastPageTitle": "Lebanese Arabic Lessons",
-    "processingStarted": "2025-07-31T10:01:23.530Z",
-    "processingCompleted": "2025-07-31T10:02:44.050Z"
+    "processingStarted": "2025-09-10T12:59:52.861Z",
+    "processingCompleted": "2025-09-10T13:02:13.548Z"
   }
 }
