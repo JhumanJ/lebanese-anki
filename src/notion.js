@@ -9,12 +9,16 @@ class NotionService {
     });
   }
 
-  async fetchLessons(pageId = config.notion.pageId) {
+  async fetchLessons(pageId = config.notion.pageId, startCursor = null) {
     try {
       console.log(`Fetching Notion page: ${pageId}`);
       
+      if (startCursor) {
+        console.log(`📍 Resuming from divider: ${startCursor}`);
+      }
+      
       // Get all blocks from the page (with pagination)
-      const blocks = await this.getAllBlocks(pageId);
+      const blocks = await this.getAllBlocks(pageId, startCursor);
     
       // Split blocks into lessons by dividers
       const lessons = this.splitBlocksIntoLessons(blocks);
@@ -26,19 +30,23 @@ class NotionService {
     }
   }
 
-  // Get all blocks from a page with pagination support
-  async getAllBlocks(pageId) {
+  // Get all blocks from a page with pagination support and optional cursor start
+  async getAllBlocks(pageId, startCursor = null) {
     const allBlocks = [];
-    let cursor = undefined;
+    let cursor = startCursor;
     let hasMore = true;
 
-    console.log(`Fetching all blocks from page: ${pageId}`);
+    if (startCursor) {
+      console.log(`Fetching blocks from page: ${pageId} (starting after cursor)`);
+    } else {
+      console.log(`Fetching all blocks from page: ${pageId}`);
+    }
 
     while (hasMore) {
       const response = await this.notion.blocks.children.list({
         block_id: pageId,
         page_size: 100,
-        start_cursor: cursor,
+        ...(cursor && { start_cursor: cursor }),
       });
 
       allBlocks.push(...response.results);
@@ -49,7 +57,7 @@ class NotionService {
       console.log(`Fetched ${response.results.length} blocks (total: ${allBlocks.length})`);
     }
 
-    console.log(`✅ Fetched all ${allBlocks.length} blocks from page`);
+    console.log(`✅ Fetched ${allBlocks.length} blocks from page`);
     return allBlocks;
   }
 

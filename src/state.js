@@ -14,6 +14,7 @@ class StateManager {
       createdAt: new Date().toISOString(),
       lastUpdated: new Date().toISOString(),
       processedLessons: {},
+      lastProcessedDividerId: null,
       stats: {
         totalLessonsProcessed: 0,
         totalLessonsFound: 0,
@@ -69,6 +70,11 @@ class StateManager {
         blockTypes: lessonData.blockTypes || [],
         ...lessonData
       };
+      
+      // Update the last processed divider ID if provided
+      if (lessonData.dividerId) {
+        this.state.lastProcessedDividerId = lessonData.dividerId;
+      }
       
       this.state.stats.totalLessonsProcessed++;
       this.saveState();
@@ -155,6 +161,11 @@ class StateManager {
     console.log('🔄 Resetting state...');
     this.state = this.getDefaultState();
     this.saveState();
+  }
+
+  // Get last processed divider ID
+  getLastProcessedDividerId() {
+    return this.state.lastProcessedDividerId;
   }
 
   // Get summary for display

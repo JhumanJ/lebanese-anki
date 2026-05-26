@@ -5,7 +5,7 @@ I built this project for fun in 3 hours to finally practice my Lebanese Arabic b
 ## Features
 
 - 📝 **Notion Integration**: Fetch and process lesson notes from any Notion page
-- 🤖 **AI-Powered Card Generation**: Create comprehensive flashcards with GPT-4o-mini
+- 🤖 **AI-Powered Card Generation**: Create comprehensive flashcards with GPT-5.5
 - 📚 **Noji Integration**: Automatically add cards to your Noji deck with HTML formatting
 - 🔄 **Smart State Management**: Resume processing from where you left off
 - 🎯 **Lebanese Arabic Focus**: Specialized prompts for Lebanese dialect with cultural context
@@ -15,7 +15,7 @@ I built this project for fun in 3 hours to finally practice my Lebanese Arabic b
 ## Prerequisites
 
 1. **Node.js** (v16 or higher)
-2. **OpenAI API Key** with access to GPT-4o-mini
+2. **OpenAI API Key** with access to GPT-5.5
 3. **Noji Account** with API bearer token and deck ID
 4. **Notion Integration** with access to your lesson notes
 
@@ -57,7 +57,7 @@ NOTION_PAGE_ID=your_notion_page_id
 ### Optional Environment Variables
 
 ```env
-OPENAI_MODEL=gpt-4o-mini
+OPENAI_MODEL=gpt-5.5
 NOJI_API_URL=https://api-de.noji.io
 ```
 

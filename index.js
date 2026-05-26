@@ -56,8 +56,15 @@ class LebanesAnkiGenerator {
 
       // Step 3: Fetch lessons from Notion
       console.log('📝 Step 3: Fetching lessons from Notion...');
-      const lessons = await this.notionService.fetchLessons();
+      const lastDividerId = this.stateManager.getLastProcessedDividerId();
+      const lessons = await this.notionService.fetchLessons(undefined, lastDividerId);
       console.log(`Found ${lessons.length} lessons`);
+      
+      // If we're resuming and found no new lessons, we're done
+      if (lastDividerId && lessons.length === 0) {
+        console.log('🎉 All lessons have been processed! Nothing new to do.');
+        return;
+      }
       
       // Step 4: Filter out already processed lessons
       console.log('\n🔍 Step 4: Filtering unprocessed lessons...');
@@ -83,6 +90,7 @@ class LebanesAnkiGenerator {
         
         let result = null;
         let cards = [];
+        let lessonSucceeded = false;
         
         try {
           // Convert lesson to markdown
@@ -114,18 +122,20 @@ class LebanesAnkiGenerator {
               totalCardsCreated += result.success;
             }
           }
+
+          lessonSucceeded = true;
           
         } catch (error) {
           console.error(`   ❌ Error processing lesson ${lesson.id}:`, error.message);
           console.error(`   Error details:`, error.stack);
           totalErrors++;
-          
-          // Set default values for failed processing
-          result = { success: 0, failed: 0 };
-          cards = [];
         }
         
-        // Always mark lesson as processed (even if it failed)
+        if (!lessonSucceeded) {
+          console.log(`   ⚠️  Lesson failed and was not marked as processed`);
+          continue;
+        }
+
         const lessonData = {
           title: `Lesson ${lesson.id}`,
           blockCount: lesson.blocks.length,
@@ -135,7 +145,8 @@ class LebanesAnkiGenerator {
           cardsGenerated: cards.length,
           cardsAdded: result?.success || 0,
           cardsFailed: result?.failed || 0,
-          processingSuccessful: result !== null && result.success >= 0
+          processingSuccessful: true,
+          dividerId: lesson.dividerId
         };
         
         console.log(`   💾 Marking lesson as processed...`);

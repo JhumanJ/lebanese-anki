@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "createdAt": "2025-07-11T23:50:06.792Z",
-  "lastUpdated": "2025-09-10T13:02:13.548Z",
+  "lastUpdated": "2026-05-26T18:04:47.898Z",
   "processedLessons": {
     "lesson-0": {
       "processedAt": "2025-07-11T23:52:33.789Z",
@@ -507,13 +507,305 @@
       "cardsAdded": 20,
       "cardsFailed": 0,
       "processingSuccessful": true
+    },
+    "lesson-33": {
+      "processedAt": "2025-10-21T08:31:47.467Z",
+      "title": "Lesson lesson-33",
+      "blockCount": 10,
+      "hasImages": true,
+      "hasText": true,
+      "blockTypes": [
+        "paragraph",
+        "image"
+      ],
+      "cardsGenerated": 12,
+      "cardsAdded": 12,
+      "cardsFailed": 0,
+      "processingSuccessful": true
+    },
+    "lesson-34": {
+      "processedAt": "2025-10-21T08:32:47.755Z",
+      "title": "Lesson lesson-34",
+      "blockCount": 28,
+      "hasImages": true,
+      "hasText": true,
+      "blockTypes": [
+        "paragraph",
+        "image",
+        "bulleted_list_item"
+      ],
+      "cardsGenerated": 39,
+      "cardsAdded": 39,
+      "cardsFailed": 0,
+      "processingSuccessful": true
+    },
+    "lesson-35": {
+      "processedAt": "2025-10-21T08:33:05.025Z",
+      "title": "Lesson lesson-35",
+      "blockCount": 5,
+      "hasImages": false,
+      "hasText": true,
+      "blockTypes": [
+        "paragraph"
+      ],
+      "cardsGenerated": 10,
+      "cardsAdded": 10,
+      "cardsFailed": 0,
+      "processingSuccessful": true
+    },
+    "lesson-36": {
+      "processedAt": "2025-10-21T08:33:46.586Z",
+      "title": "Lesson lesson-36",
+      "blockCount": 15,
+      "hasImages": true,
+      "hasText": true,
+      "blockTypes": [
+        "paragraph",
+        "image"
+      ],
+      "cardsGenerated": 22,
+      "cardsAdded": 22,
+      "cardsFailed": 0,
+      "processingSuccessful": true
+    },
+    "lesson-37": {
+      "processedAt": "2025-10-21T08:34:39.253Z",
+      "title": "Lesson lesson-37",
+      "blockCount": 34,
+      "hasImages": true,
+      "hasText": true,
+      "blockTypes": [
+        "paragraph",
+        "column_list",
+        "image",
+        "bulleted_list_item"
+      ],
+      "cardsGenerated": 35,
+      "cardsAdded": 35,
+      "cardsFailed": 0,
+      "processingSuccessful": true
+    },
+    "lesson-38": {
+      "processedAt": "2025-10-21T08:35:22.559Z",
+      "title": "Lesson lesson-38",
+      "blockCount": 19,
+      "hasImages": true,
+      "hasText": true,
+      "blockTypes": [
+        "paragraph",
+        "image",
+        "bulleted_list_item",
+        "column_list"
+      ],
+      "cardsGenerated": 32,
+      "cardsAdded": 32,
+      "cardsFailed": 0,
+      "processingSuccessful": true
+    },
+    "lesson-39": {
+      "processedAt": "2025-10-30T10:09:52.561Z",
+      "title": "Lesson lesson-39",
+      "blockCount": 18,
+      "hasImages": true,
+      "hasText": true,
+      "blockTypes": [
+        "paragraph",
+        "image",
+        "bulleted_list_item"
+      ],
+      "cardsGenerated": 25,
+      "cardsAdded": 25,
+      "cardsFailed": 0,
+      "processingSuccessful": true
+    },
+    "lesson-40": {
+      "processedAt": "2025-11-26T17:17:22.760Z",
+      "title": "Lesson lesson-40",
+      "blockCount": 27,
+      "hasImages": true,
+      "hasText": true,
+      "blockTypes": [
+        "paragraph",
+        "image"
+      ],
+      "cardsGenerated": 31,
+      "cardsAdded": 31,
+      "cardsFailed": 0,
+      "processingSuccessful": true
+    },
+    "lesson-41": {
+      "processedAt": "2025-11-26T17:18:09.854Z",
+      "title": "Lesson lesson-41",
+      "blockCount": 8,
+      "hasImages": true,
+      "hasText": true,
+      "blockTypes": [
+        "paragraph",
+        "image"
+      ],
+      "cardsGenerated": 22,
+      "cardsAdded": 22,
+      "cardsFailed": 0,
+      "processingSuccessful": true
+    },
+    "lesson-42": {
+      "processedAt": "2025-11-26T17:18:53.593Z",
+      "title": "Lesson lesson-42",
+      "blockCount": 8,
+      "hasImages": true,
+      "hasText": true,
+      "blockTypes": [
+        "paragraph",
+        "image"
+      ],
+      "cardsGenerated": 24,
+      "cardsAdded": 24,
+      "cardsFailed": 0,
+      "processingSuccessful": true
+    },
+    "lesson-43": {
+      "processedAt": "2025-11-26T17:19:45.073Z",
+      "title": "Lesson lesson-43",
+      "blockCount": 11,
+      "hasImages": true,
+      "hasText": true,
+      "blockTypes": [
+        "image",
+        "paragraph",
+        "table"
+      ],
+      "cardsGenerated": 29,
+      "cardsAdded": 29,
+      "cardsFailed": 0,
+      "processingSuccessful": true
+    },
+    "lesson-44": {
+      "processedAt": "2025-11-26T17:20:21.460Z",
+      "title": "Lesson lesson-44",
+      "blockCount": 10,
+      "hasImages": true,
+      "hasText": true,
+      "blockTypes": [
+        "paragraph",
+        "image"
+      ],
+      "cardsGenerated": 18,
+      "cardsAdded": 18,
+      "cardsFailed": 0,
+      "processingSuccessful": true
+    },
+    "lesson-45": {
+      "processedAt": "2025-12-12T13:50:30.045Z",
+      "title": "Lesson lesson-45",
+      "blockCount": 8,
+      "hasImages": false,
+      "hasText": true,
+      "blockTypes": [
+        "paragraph"
+      ],
+      "cardsGenerated": 11,
+      "cardsAdded": 11,
+      "cardsFailed": 0,
+      "processingSuccessful": true
+    },
+    "lesson-46": {
+      "processedAt": "2025-12-12T13:51:00.613Z",
+      "title": "Lesson lesson-46",
+      "blockCount": 23,
+      "hasImages": false,
+      "hasText": true,
+      "blockTypes": [
+        "paragraph",
+        "heading_3"
+      ],
+      "cardsGenerated": 20,
+      "cardsAdded": 20,
+      "cardsFailed": 0,
+      "processingSuccessful": true
+    },
+    "lesson-47": {
+      "processedAt": "2026-03-03T17:56:00.372Z",
+      "title": "Lesson lesson-47",
+      "blockCount": 11,
+      "hasImages": false,
+      "hasText": true,
+      "blockTypes": [
+        "paragraph"
+      ],
+      "cardsGenerated": 31,
+      "cardsAdded": 31,
+      "cardsFailed": 0,
+      "processingSuccessful": true
+    },
+    "lesson-48": {
+      "processedAt": "2026-03-03T17:56:17.027Z",
+      "title": "Lesson lesson-48",
+      "blockCount": 10,
+      "hasImages": false,
+      "hasText": true,
+      "blockTypes": [
+        "paragraph"
+      ],
+      "cardsGenerated": 9,
+      "cardsAdded": 9,
+      "cardsFailed": 0,
+      "processingSuccessful": true
+    },
+    "lesson-49": {
+      "processedAt": "2026-03-03T17:57:11.012Z",
+      "title": "Lesson lesson-49",
+      "blockCount": 24,
+      "hasImages": true,
+      "hasText": true,
+      "blockTypes": [
+        "paragraph",
+        "image",
+        "column_list",
+        "bulleted_list_item"
+      ],
+      "cardsGenerated": 21,
+      "cardsAdded": 21,
+      "cardsFailed": 0,
+      "processingSuccessful": true
+    },
+    "lesson-50": {
+      "processedAt": "2026-03-03T17:58:08.693Z",
+      "title": "Lesson lesson-50",
+      "blockCount": 5,
+      "hasImages": true,
+      "hasText": true,
+      "blockTypes": [
+        "image",
+        "paragraph"
+      ],
+      "cardsGenerated": 20,
+      "cardsAdded": 20,
+      "cardsFailed": 0,
+      "processingSuccessful": true
+    },
+    "lesson-51": {
+      "processedAt": "2026-03-03T17:59:10.196Z",
+      "title": "Lesson lesson-51",
+      "blockCount": 17,
+      "hasImages": true,
+      "hasText": true,
+      "blockTypes": [
+        "paragraph",
+        "image",
+        "bulleted_list_item"
+      ],
+      "cardsGenerated": 21,
+      "cardsAdded": 21,
+      "cardsFailed": 0,
+      "processingSuccessful": true
     }
   },
+  "lastProcessedDividerId": null,
   "stats": {
-    "totalLessonsProcessed": 33,
-    "totalLessonsFound": 33,
+    "totalLessonsProcessed": 52,
+    "totalLessonsFound": 61,
     "lastPageTitle": "Lebanese Arabic Lessons",
-    "processingStarted": "2025-09-10T12:59:52.861Z",
-    "processingCompleted": "2025-09-10T13:02:13.548Z"
+    "processingStarted": "2026-05-26T18:04:47.896Z",
+    "processingCompleted": null
   }
 }

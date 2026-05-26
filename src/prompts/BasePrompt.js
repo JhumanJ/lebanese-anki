@@ -6,8 +6,8 @@ class BasePrompt {
     // Default configuration
     this.provider = options.provider || 'openai';
     this.model = options.model || config.openai.model;
-    this.temperature = options.temperature || 0.7;
-    this.maxTokens = options.maxTokens || 2000;
+    this.temperature = options.temperature ?? 0.7;
+    this.maxTokens = options.maxTokens ?? 2000;
     this.structuredOutputSchema = options.structuredOutputSchema || null;
     
     // Initialize LLM
@@ -89,9 +89,12 @@ class BasePrompt {
       const requestOptions = {
         model: this.model,
         messages,
-        temperature: this.temperature,
-        max_tokens: this.maxTokens,
+        max_completion_tokens: this.maxTokens,
       };
+
+      if (!this.model.startsWith('gpt-5.5')) {
+        requestOptions.temperature = this.temperature;
+      }
 
       // Add structured output if schema is provided
       if (this.structuredOutputSchema) {

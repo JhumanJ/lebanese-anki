@@ -3,7 +3,7 @@ const BasePrompt = require('./BasePrompt');
 class ImageDescriptionPrompt extends BasePrompt {
   constructor(options = {}) {
     super({
-      model: options.model || 'gpt-4o-mini',
+      model: options.model || 'gpt-5.5',
       temperature: options.temperature || 0.1,
       maxTokens: options.maxTokens || 8000,
       structuredOutputSchema: {
