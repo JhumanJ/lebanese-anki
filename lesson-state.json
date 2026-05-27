@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "createdAt": "2025-07-11T23:50:06.792Z",
-  "lastUpdated": "2026-05-26T18:04:47.898Z",
+  "lastUpdated": "2026-05-26T18:14:39.983Z",
   "processedLessons": {
     "lesson-0": {
       "processedAt": "2025-07-11T23:52:33.789Z",
@@ -798,14 +798,48 @@
       "cardsAdded": 21,
       "cardsFailed": 0,
       "processingSuccessful": true
+    },
+    "lesson-52": {
+      "processedAt": "2026-05-26T18:12:25.073Z",
+      "title": "Lesson lesson-52",
+      "blockCount": 53,
+      "hasImages": true,
+      "hasText": true,
+      "blockTypes": [
+        "paragraph",
+        "image",
+        "bulleted_list_item",
+        "column_list"
+      ],
+      "cardsGenerated": 235,
+      "cardsAdded": 235,
+      "cardsFailed": 0,
+      "processingSuccessful": true,
+      "dividerId": "30a5f481-4007-80c5-beb9-ebca83231768"
+    },
+    "lesson-53": {
+      "processedAt": "2026-05-26T18:14:39.983Z",
+      "title": "Lesson lesson-53",
+      "blockCount": 7,
+      "hasImages": true,
+      "hasText": true,
+      "blockTypes": [
+        "paragraph",
+        "image"
+      ],
+      "cardsGenerated": 74,
+      "cardsAdded": 74,
+      "cardsFailed": 0,
+      "processingSuccessful": true,
+      "dividerId": "3265f481-4007-8002-9f48-fffd3d11a84e"
     }
   },
-  "lastProcessedDividerId": null,
+  "lastProcessedDividerId": "3265f481-4007-8002-9f48-fffd3d11a84e",
   "stats": {
-    "totalLessonsProcessed": 52,
+    "totalLessonsProcessed": 54,
     "totalLessonsFound": 61,
     "lastPageTitle": "Lebanese Arabic Lessons",
-    "processingStarted": "2026-05-26T18:04:47.896Z",
+    "processingStarted": "2026-05-26T18:07:17.640Z",
     "processingCompleted": null
   }
 }

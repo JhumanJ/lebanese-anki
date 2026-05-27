@@ -2,6 +2,10 @@ const BasePrompt = require('./BasePrompt');
 
 class CardsGenerationPrompt extends BasePrompt {
   constructor(options = {}) {
+    const maxCards = options.maxCards ?? 35;
+    const targetMinCards = options.targetMinCards ?? 22;
+    const targetMaxCards = options.targetMaxCards ?? 28;
+
     super({
       model: options.model || 'gpt-5.5',
       temperature: options.temperature || 0.2,
@@ -34,6 +38,10 @@ class CardsGenerationPrompt extends BasePrompt {
       },
       ...options
     });
+
+    this.maxCards = maxCards;
+    this.targetMinCards = targetMinCards;
+    this.targetMaxCards = targetMaxCards;
   }
 
   getSystemPrompt() {
@@ -52,12 +60,47 @@ Your expertise includes:
 - Spelling correction in Arabic, English, and French`;
   }
 
+  getCardCountGuidance(lessonContent) {
+    const characterCount = lessonContent.trim().length;
+
+    if (characterCount < 500) {
+      return {
+        characterCount,
+        lessonSize: 'short',
+        target: '8-14'
+      };
+    }
+
+    if (characterCount < 1500) {
+      return {
+        characterCount,
+        lessonSize: 'medium',
+        target: '16-24'
+      };
+    }
+
+    return {
+      characterCount,
+      lessonSize: 'long',
+      target: `${this.targetMinCards}-${this.targetMaxCards}`
+    };
+  }
+
   buildPrompt(lessonContent) {
+    const cardCountGuidance = this.getCardCountGuidance(lessonContent);
+
     return `Based on the following Lebanese Arabic lesson notes, create flashcards that will help a student learn effectively.
 
 <LessonContent>
 ${lessonContent}
 </LessonContent>
+
+CARD COUNT BUDGET:
+- Lesson size: ${cardCountGuidance.lessonSize} (${cardCountGuidance.characterCount} characters).
+- Create ${cardCountGuidance.target} cards for this lesson.
+- Absolute maximum: ${this.maxCards} cards. Never exceed this maximum.
+- If there are more possible cards than the budget allows, choose the most useful cards and skip lower-value variations.
+- Before writing the JSON, mentally rank candidate cards by learning value and return only the best ones.
 
 IMPORTANT NOTES ABOUT THE SOURCE MATERIAL:
 - These are student notes, which may contain mistakes, typos, spelling errors, or incomplete information
@@ -76,9 +119,17 @@ IMPORTANT NOTES ABOUT THE SOURCE MATERIAL:
 
 Please create flashcards following these guidelines:
 
-1. COMPREHENSIVE COVERAGE: Create as many cards as necessary to thoroughly cover ALL vocabulary, phrases, grammar concepts, and cultural information from the lesson. Don't limit yourself - complete coverage is more important than brevity.
+1. BALANCED COVERAGE: Create a focused, useful deck rather than every possible card variation.
+   - Follow the CARD COUNT BUDGET above for the exact target count.
+   - Hard maximum: ${this.maxCards} cards. Never exceed this.
+   - Order cards from most important to least important so the first cards are the best cards.
+   - Complete coverage means covering the important learning points, not multiplying every item into every possible direction.
 
-2. OVERLAPPING CARDS: Create multiple cards for the same concept from different angles if needed.
+2. CONTROLLED OVERLAP: Create multiple cards for the same concept only when it adds clear learning value. Avoid combinatorial expansion.
+   - Usually create 1-2 cards per vocabulary item or phrase.
+   - Add a separate dialect comparison card only for important differences.
+   - Do not create separate English and French production cards for the same concept unless both languages are clearly central in the notes.
+   - Prefer one well-designed card with Lebanese/MSA contrast in the back over three near-duplicate cards.
 
 3. DUAL DIALECT APPROACH: The student is learning both Lebanese Arabic and Modern Standard Arabic simultaneously. For vocabulary and phrases:
    - Include BOTH Lebanese Arabic and Modern Standard Arabic versions when they differ
@@ -90,8 +141,8 @@ Please create flashcards following these guidelines:
    - **Recognition cards** (Arabic → English/French): Front = Arabic script only, Back = English/French translation + pronunciation hints + dialect info
    - **Production cards** (English/French → Lebanese): Front = English/French phrase/word, Back = Lebanese Arabic script only
    - **Production cards** (English/French → MSA): Front = English/French phrase/word, Back = MSA Arabic script only
-   - **Bidirectional production**: Create BOTH Lebanese and MSA production cards for the same English/French term when they differ
-   - **Dialect comparison cards**: When Lebanese ≠ MSA, create separate cards comparing the dialects
+   - **Bidirectional production**: Create BOTH Lebanese and MSA production cards only for high-value terms when they differ
+   - **Dialect comparison cards**: When Lebanese ≠ MSA, create separate cards comparing the dialects only for important or confusing differences
    - **Grammar concepts**: Front = Grammar rule or example, Back = Explanation covering both dialects when relevant
    - **Cultural context**: Front = Cultural concept, Back = Explanation and significance
    - **Pronunciation cards**: For difficult words, Front = Arabic, Back = Pronunciation guide + meaning + transcription
@@ -101,7 +152,7 @@ Please create flashcards following these guidelines:
    - **Lebanese Production Practice**: English/French on front → Lebanese Arabic script only on back
    - **MSA Production Practice**: English/French on front → MSA Arabic script only on back
    - **Dialect Distinction**: When Lebanese differs from MSA, create a separate card specifically for this comparison
-   - **CRITICAL**: For each vocabulary item, create BOTH Lebanese and MSA production cards when they differ
+   - **IMPORTANT**: For important vocabulary items, create BOTH Lebanese and MSA production cards when they differ. For lower-priority items, include the dialect contrast on the back of a single card instead.
 
 6. ARABIC SCRIPT REQUIREMENT: 
    - Use Arabic script (no Latin letters) for Arabic content to practice reading
@@ -205,6 +256,11 @@ JSON:`;
 
     if (validCards.length === 0) {
       throw new Error('No valid cards generated');
+    }
+
+    if (validCards.length > this.maxCards) {
+      console.log(`⚠️  Generated ${validCards.length} valid cards; keeping the first ${this.maxCards} highest-priority cards`);
+      return validCards.slice(0, this.maxCards);
     }
 
     console.log(`Generated ${validCards.length} valid cards`);
